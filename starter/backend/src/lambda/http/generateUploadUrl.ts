@@ -13,7 +13,7 @@ export const handler = middy(
     const todoId = event.pathParameters.todoId
     const userId = getUserId(event)
     const imageId = uuid.v4()
-    const bucketName = process.env.ATTACHMENT_S3_BUCKET
+    const bucketName = process.env.S3_BUCKET_NAME
     
     //Generate presigned url
     const uploadUrl = await getUploadUrl(imageId);
