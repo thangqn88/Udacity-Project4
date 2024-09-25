@@ -18,6 +18,13 @@ provider:
   tracing:
     lambda: true
     apiGateway: true
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "logs:CreateLogGroup"
+        - "logs:CreateLogStream"
+        - "logs:PutLogEvents"
+      Resource: "*"
 
 
   environment:
@@ -164,7 +171,7 @@ resources:
                   Action:
                     - 'logs:*'
                   Resource: '*'
-                  
+
     GatewayResponseDefault4XX:
       Type: AWS::ApiGateway::GatewayResponse
       Properties:
