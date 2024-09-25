@@ -1,7 +1,7 @@
 org: thangqn88
 app: thangqn-uda-p4
 service: serverless-todo-app
-frameworkVersion: '3.24.1'
+frameworkVersion: '3.39.0'
 
 
 plugins:
@@ -30,14 +30,6 @@ provider:
   logs:
     restApi: true
 
-  iamRoleStatements:
-      - Effect: Allow
-        Action:
-          - dynamodb:PutItem
-          - xray:PutTelemetryRecords
-          - xray:PutTraceSegments
-        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
-
 functions:
 
   Auth:
@@ -61,6 +53,13 @@ functions:
           path: todos
           cors: true
           authorizer: Auth
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:Query
+          - xray:PutTelemetryRecords
+          - xray:PutTraceSegments
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
 
   # TODO: Configure this function
   CreateTodo:
@@ -74,6 +73,13 @@ functions:
           request:
             schema:
               application/json: ${file(src/models/create-todo-model.json)}
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:PutItem
+          - xray:PutTelemetryRecords
+          - xray:PutTraceSegments
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
 
   # TODO: Configure this function
   UpdateTodo:
@@ -87,6 +93,13 @@ functions:
           request:
             schema:
               application/json: ${file(src/models/update-todo-model.json)}
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:UpdateItem
+          - xray:PutTelemetryRecords
+          - xray:PutTraceSegments
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
 
   # TODO: Configure this function
   DeleteTodo:
@@ -97,6 +110,13 @@ functions:
           path: todos/{todoId}
           cors: true
           authorizer: Auth
+    iamRoleStatements:
+      - Effect: Allow
+        Action:
+          - dynamodb:DeleteItem
+          - xray:PutTelemetryRecords
+          - xray:PutTraceSegments
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
           
 
   # TODO: Configure this function
