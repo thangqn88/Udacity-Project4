@@ -10,7 +10,7 @@ import * as jwksClient from "jwks-rsa";
 
 const logger = createLogger('auth')
 
-const jwksUrl = 'https://dev-udacity-hungvm1.us.auth0.com/.well-known/jwks.json'
+const jwksUrl = 'https://dev-pqowwt75rmrogreu.us.auth0.com/.well-known/jwks.json'
 
 export const handler = async (
   event: APIGatewayTokenAuthorizerEvent

@@ -123,8 +123,7 @@ functions:
           - dynamodb:DeleteItem
           - xray:PutTelemetryRecords
           - xray:PutTraceSegments
-        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}
-          
+        Resource: arn:aws:dynamodb:${self:provider.region}:*:table/${self:provider.environment.TODOS_TABLE}     
 
   # TODO: Configure this function
   GenerateUploadUrl:
