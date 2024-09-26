@@ -1,19 +1,17 @@
 {
     "$schema": "http://json-schema.org/draft-04/schema#",
-    "title": "group",
+    "title": "Create Todo",
     "type": "object",
     "properties": {
         "name": {
             "type": "string",
-            "minLength": 1
+            "minLength": 3
         },
         "dueDate": {
-            "type": "string"
+            "type": "string",
+            "format": "date"
         }
     },
-    "required": [
-        "name",
-        "dueDate"
-    ],
+    "required": ["name", "dueDate"],
     "additionalProperties": false
 }

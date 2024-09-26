@@ -18,14 +18,6 @@ provider:
   tracing:
     lambda: true
     apiGateway: true
-  iamRoleStatements:
-    - Effect: "Allow"
-      Action:
-        - "logs:CreateLogGroup"
-        - "logs:CreateLogStream"
-        - "logs:PutLogEvents"
-      Resource: "*"
-
 
   environment:
     PROJECT_NAME: thangqn-p4
